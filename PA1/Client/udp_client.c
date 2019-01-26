@@ -35,7 +35,6 @@ void error(char *msg)
   	  exit(1);
 	}
 
-//Structure payload for "put" command
 typedef struct payload
 {
 	unsigned int seq_id;
@@ -43,14 +42,13 @@ typedef struct payload
 	unsigned int bytes;
 } payload_t;
 
-//Structure for acknowledgement of "put" command
+
 typedef struct ack
 {
 	unsigned int seq_id;
 	unsigned char ack_status;
 } ack_t;
 
-////Structure payload for "get" command
 typedef struct payload1
 {
 	unsigned int seq_id1;
@@ -58,7 +56,7 @@ typedef struct payload1
 	unsigned int bytes1;
 } payload_t1;
 
-//Structure for acknowledgement of "put" command
+
 typedef struct ack1
 {
 	unsigned int seq_id1;
@@ -76,16 +74,17 @@ int main(int argc, char **argv)
     int counter3 = 0;
     int sockfd, portno, n;
     int serverlen;
-		int counter2 = 0;int counter4 =1;
+    int counter2 = 0;
+    int counter4 =1;
     int clientlen;
     socklen_t client_raj;
     long unsigned int f7_value=0;
-	  long unsigned int f77_value=0;
+    long unsigned int f77_value=0;
     struct sockaddr_in clientaddr;
     struct sockaddr_in serveraddr;
     struct sockaddr_in addr;
     struct hostent *server;
-		char d[BUFSIZE];
+    char d[BUFSIZE];
     char *hostname;
     char buf[BUFSIZE];
     char rajbuffer_sending[BUFSIZE]; //Buffer created for sending
@@ -116,13 +115,13 @@ int main(int argc, char **argv)
     /* socket: create the socket */
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockfd < 0)
-			{
+      {
         error("ERROR opening socket");
-			}
+      }
     else
-			{
-	 			printf(" Socket created successfully \n ");
-			}
+      {
+	printf(" Socket created successfully \n ");
+      }
 
     /* gethostbyname: get the server's DNS entry */
     server = gethostbyname(hostname);
@@ -139,32 +138,31 @@ int main(int argc, char **argv)
     serveraddr.sin_port = htons(portno);
 
     if(connect(sockfd, (struct sockaddr *) &serveraddr, sizeof(serveraddr)) < 0)
-			{
-				error("Connection is not established \n ");
-			}
+	{
+         error("Connection is not established \n ");
+	}
     else
-			{
-				printf("Connection is created successfully \n ");
-			}
+	{
+	 printf("Connection is created successfully \n ");
+	}
 	int timing_raj = 4;
 	struct timeval timeval_structure = {timing_raj,0};
-  setsockopt(sockfd,SOL_SOCKET,SO_RCVTIMEO, (char *)&timeval_structure,sizeof(timeval_structure));
-		while(1)
-		{
-        payload_t packet;
-				ack_t rx_packet;
-				payload_t1 receive_packet1;
-	      ack_t1 ack_packet1;
-
-				long int file_size;
-				int m;
-				long int num_bytes = 0;
-				size_t result;
+  	setsockopt(sockfd,SOL_SOCKET,SO_RCVTIMEO, (char *)&timeval_structure,sizeof(timeval_structure));
+	while(1)
+	{
+         payload_t packet;
+        ack_t rx_packet;
+	payload_t1 receive_packet1;
+	ack_t1 ack_packet1;
+	long int file_size;
+	int m;
+	long int num_bytes = 0;
+	size_t result;
 
 	//printf("There are 5 choices :- \n1)get%s \n2)put%s \n3)delete%s \n4)ls%s \n5)exit%s \n",FILE_NAME,FILE_NAME,FILE_NAME,FILE_NAME,FILE_NAME);
-  printf("There are 5 choices :- \n1)get \n2)put \n3)delete \n4)ls \n5)exit\n");
-  bzero(command2,sizeof(command2));
-	gets(command2);
+	  printf("There are 5 choices :- \n1)get \n2)put \n3)delete \n4)ls \n5)exit\n");
+  	  bzero(command2,sizeof(command2));
+	  gets(command2);
 
 	//SENDTO NUMBER 1
 	 n = sendto(sockfd, command2, strlen(command2), 0, (const struct sockaddr *)&serveraddr,sizeof(serveraddr));
