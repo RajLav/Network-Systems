@@ -1,13 +1,13 @@
-Subject :- Network Systems 
-Sem :- Fall 18 
-Professor :- Dr Sangtae
+**#Subject : Network Systems   
+#Term : Fall 18  
+#Professor : Dr Sangtae  
+#Author : Raj Lavingia  
+#Assignment : 3**    
 
-This is Readme for the Third Programming assignment for the Network Systems Course
-
-To run this file
+**Run this file**  
 ./webproxy2
 
-Features Included: -
+**Features Included :**  
 
 Multithreading - In this , multiple clients can access the server at the same time. It is implemented with the help of forking method
 
