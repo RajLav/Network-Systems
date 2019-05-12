@@ -17,8 +17,8 @@ It includes services like get the file , put the file, delete the file, list the
 The whole process was made a reliable transfer of files which can be of any extension like .jpg, .pdf etc.
 
 **For running the files**  
-Server : Filename Port Number
-Clint : Filename localhost ip
+Server : Filename Port Number  
+Client : Filename localhost ip  
 
 This code is tested on native machine and also on remote server.
 
@@ -30,4 +30,6 @@ If in a certain time , the packet is not reached on another end then the transfe
 
 #Socket Programming  
 #Reliable Packet Transfer Mechanism in UDP  
+#send to and receive from mechanism used  
+
 
